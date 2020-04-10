@@ -2,21 +2,21 @@
 
 CONF_FILE="/etc/vsftp/vsftp.conf"
 
-if [ "$1" = "ftp" ]; then
+if [ "$MODE" = "ftp" ]; then
  echo "Launching vsftp on ftp protocol"
 fi
 
-if [ "$1" = "ftps" ]; then
+if [ "$MODE" = "ftps" ]; then
  echo "Launching vsftp on ftps protocol"
  CONF_FILE="/etc/vsftp/vsftp_ftps.conf"
 fi
 
-if [ "$1" = "ftps_implicit" ]; then
+if [ "$MODE" = "ftps_implicit" ]; then
  echo "Launching vsftp on ftps protocol in implicit mode"
  CONF_FILE="/etc/vsftp/vsftp_ftps_implicit.conf"
 fi
 
-if [ "$1" = "ftps_tls" ]; then
+if [ "$MODE" = "ftps_tls" ]; then
  echo "Launching vsftp on ftps with TLS only protocol"
  CONF_FILE="/etc/vsftp/vsftp_ftps_tls.conf"
 fi
@@ -34,7 +34,7 @@ then
 
     openssl req -x509 -nodes -days 7300 \
         -newkey rsa:2048 -keyout /etc/vsftpd/private/vsftpd.pem -out /etc/vsftpd/private/vsftpd.pem \
-        -subj "/C=FR/O=My company/CN=example.org"
+        -subj "/C=FR/O=My company/CN=localhost"
     openssl pkcs12 -export -out /etc/vsftpd/private/vsftpd.pkcs12 -in /etc/vsftpd/private/vsftpd.pem -passout pass:
 
     chmod 755 /etc/vsftpd/private/vsftpd.pem
